@@ -1,5 +1,7 @@
 package net.thevpc.nuts.lib.md.base;
 
+import net.thevpc.nuts.elem.NElement;
+import net.thevpc.nuts.elem.NElements;
 import net.thevpc.nuts.lib.md.*;
 import net.thevpc.nuts.lib.md.docusaurus.DocusaurusTextReader;
 import net.thevpc.nuts.lib.md.docusaurus.TextReader;
@@ -7,8 +9,6 @@ import net.thevpc.nuts.lib.md.util.MdElementAndChildrenList;
 import net.thevpc.nuts.lib.md.util.MdUtils;
 import net.thevpc.nuts.util.NBlankable;
 import net.thevpc.nuts.util.NStringBuilder;
-import net.thevpc.nuts.util.NStringUtils;
-import org.yaml.snakeyaml.Yaml;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -34,7 +34,7 @@ public class BaseMdParser implements MdParser {
         MdElement n;
         SectionPathHolder path = new SectionPathHolder();
         MdElementAndChildrenList list = new MdElementAndChildrenList();
-        Object frontMatter = parseHeader(path);
+        NElement frontMatter = parseHeader(path);
         list.setFrontMatter(frontMatter);
         while (reader.hasMore()) {
             n = readLine(new Cond().setConsumeNewline(NewLineAction.SPACE)
@@ -47,7 +47,7 @@ public class BaseMdParser implements MdParser {
         return list.build();
     }
 
-    protected Object parseHeader(SectionPathHolder path) {
+    protected NElement parseHeader(SectionPathHolder path) {
         NStringBuilder frontMatter = new NStringBuilder();
         reader.readSpacesOrNewline();
         if (reader.hasMore()) {
@@ -62,11 +62,7 @@ public class BaseMdParser implements MdParser {
                 }
             }
         }
-        try (Reader is = new StringReader(frontMatter.toString())) {
-            return new Yaml().load(is);
-        } catch (IOException ex) {
-            throw new UncheckedIOException(ex);
-        }
+        return NElements.of().yaml().parse(frontMatter.toString());
     }
 
     @Override

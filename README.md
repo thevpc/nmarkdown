@@ -1,2 +1,2 @@
-# nmakdown
+# nmarkdown
 Java Markdown Parser
