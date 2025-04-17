@@ -1,14 +1,14 @@
 package net.thevpc.nuts.lib.md.util;
 
+import net.thevpc.nuts.elem.NElement;
 import net.thevpc.nuts.lib.md.*;
 import net.thevpc.nuts.lib.md.base.MdAbstractElement;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class MdElementAndChildrenList {
-    private Object frontMatter;
+    private NElement header;
     List<MdElementAndChildren> currPath = new ArrayList<>();
 
     public MdElementAndChildrenList() {
@@ -17,7 +17,7 @@ public class MdElementAndChildrenList {
 
     public MdElement build() {
         MdElementAndChildren b = currPath.get(0).build();
-        ((MdAbstractElement) b.e).setPreambleHeader(frontMatter);
+        ((MdAbstractElement) b.e).setPreambleHeader(header);
         return b.e;
     }
 
@@ -82,11 +82,11 @@ public class MdElementAndChildrenList {
     }
 
 
-    public Object getFrontMatter() {
-        return frontMatter;
+    public NElement getHeader() {
+        return header;
     }
 
-    public void setFrontMatter(Object frontMatter) {
-        this.frontMatter = frontMatter;
+    public void setHeader(NElement header) {
+        this.header = header;
     }
 }

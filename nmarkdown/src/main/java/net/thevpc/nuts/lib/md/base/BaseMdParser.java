@@ -10,10 +10,8 @@ import net.thevpc.nuts.lib.md.util.MdUtils;
 import net.thevpc.nuts.util.NBlankable;
 import net.thevpc.nuts.util.NStringBuilder;
 
-import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
-import java.io.UncheckedIOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -35,7 +33,7 @@ public class BaseMdParser implements MdParser {
         SectionPathHolder path = new SectionPathHolder();
         MdElementAndChildrenList list = new MdElementAndChildrenList();
         NElement frontMatter = parseHeader(path);
-        list.setFrontMatter(frontMatter);
+        list.setHeader(frontMatter);
         while (reader.hasMore()) {
             n = readLine(new Cond().setConsumeNewline(NewLineAction.SPACE)
                             .setWasNewline(true)

@@ -17,6 +17,7 @@
  */
 package net.thevpc.nuts.lib.md;
 
+import net.thevpc.nuts.elem.NElement;
 import net.thevpc.nuts.util.NBlankable;
 
 /**
@@ -24,7 +25,7 @@ import net.thevpc.nuts.util.NBlankable;
  * @author thevpc
  */
 public interface MdElement extends NBlankable {
-    Object getPreambleHeader();
+    NElement getPreambleHeader();
 
     MdElementType type();
 

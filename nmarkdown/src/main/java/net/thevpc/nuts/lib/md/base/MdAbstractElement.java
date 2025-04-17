@@ -17,6 +17,7 @@
  */
 package net.thevpc.nuts.lib.md.base;
 
+import net.thevpc.nuts.elem.NElement;
 import net.thevpc.nuts.lib.md.*;
 
 /**
@@ -24,13 +25,13 @@ import net.thevpc.nuts.lib.md.*;
  * @author thevpc
  */
 public abstract class MdAbstractElement implements MdElement {
-    private Object preambleHeader;
+    private NElement preambleHeader;
 
-    public Object getPreambleHeader() {
+    public NElement getPreambleHeader() {
         return preambleHeader;
     }
 
-    public void setPreambleHeader(Object preambleHeader) {
+    public void setPreambleHeader(NElement preambleHeader) {
         this.preambleHeader = preambleHeader;
     }
 
