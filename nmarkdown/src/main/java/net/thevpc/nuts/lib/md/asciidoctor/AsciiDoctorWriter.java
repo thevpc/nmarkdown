@@ -345,15 +345,15 @@ public class AsciiDoctorWriter extends AbstractMdWriter {
                 writeln();
                 writeln("|===");
                 for (MdColumn cell : tab.getColumns()) {
-                    write("|");
+                    write("h| ");
                     writeImpl(cell.getName(), context);
                     write(" ");
                 }
                 writeln();
                 for (MdRow row : tab.getRows()) {
-                    writeln();
                     for (MdElement cell : row.getCells()) {
-                        write("|");
+                        writeln();
+                        write("a| ");
                         writeImpl(cell, context);
                         write(" ");
                     }
