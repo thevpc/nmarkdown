@@ -18,7 +18,6 @@
 package net.thevpc.nuts.lib.md;
 
 import net.thevpc.nuts.io.NInputSource;
-import net.thevpc.nuts.io.NPath;
 import net.thevpc.nuts.lib.md.base.DefaultMdProvider;
 import net.thevpc.nuts.util.NRef;
 import net.thevpc.nuts.util.NStringUtils;
@@ -55,21 +54,21 @@ public class MdFactory {
         return new MdElement[]{e};
     }
 
-    public static MdParser createParser(String mimeType, InputStream inputStream) {
-        return createParser(mimeType,new InputStreamReader(inputStream));
+    public static MdParser createParser(InputStream inputStream, String mimeType) {
+        return createParser(new InputStreamReader(inputStream), mimeType);
     }
 
-    public static MdElement parse(String mimeType, NInputSource inputSource) {
-        try(MdParser p=createParser(mimeType,inputSource)) {
+    public static MdElement parse(NInputSource inputSource, String mimeType) {
+        try(MdParser p=createParser(inputSource, mimeType)) {
             return p.parse();
         }
     }
 
-    public static MdParser createParser(String mimeType, NInputSource inputSource) {
-        return createParser(mimeType,inputSource.getReader());
+    public static MdParser createParser(NInputSource inputSource, String mimeType) {
+        return createParser(inputSource.getReader(), mimeType);
     }
 
-    public static MdParser createParser(String mimeType, Reader reader) {
+    public static MdParser createParser(Reader reader, String mimeType) {
         MdParser p = getProvider(mimeType).createParser(reader);
         if (p == null) {
             throw new NoSuchElementException("no markdown parser for : " + mimeType);
@@ -77,12 +76,34 @@ public class MdFactory {
         return p;
     }
 
-    public static MdWriter createWriter(String mimeType, Writer reader) {
+    public static MdWriter createWriter(Writer reader, String mimeType) {
         MdWriter w = getProvider(mimeType).createWriter(reader);
         if (w == null) {
             throw new NoSuchElementException("no markdown writer for : " + mimeType);
         }
         return w;
+    }
+
+    public static MdParser createParser(InputStream inputStream) {
+        return createParser(new InputStreamReader(inputStream));
+    }
+
+    public static MdElement parse(NInputSource inputSource) {
+        try(MdParser p=createParser(inputSource)) {
+            return p.parse();
+        }
+    }
+
+    public static MdParser createParser(NInputSource inputSource) {
+        return createParser(inputSource.getReader());
+    }
+
+    public static MdParser createParser(Reader reader) {
+        return createParser(reader,MdFactory.MIMETYPE_DOCUSAURUS);
+    }
+
+    public static MdWriter createWriter(Writer reader) {
+        return createWriter(reader,MdFactory.MIMETYPE_DOCUSAURUS);
     }
 
 

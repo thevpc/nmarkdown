@@ -1,5 +1,6 @@
 package net.thevpc.nuts.test.md;
 
+import net.thevpc.nuts.Nuts;
 import net.thevpc.nuts.lib.md.*;
 import net.thevpc.nuts.lib.md.asciidoctor.AsciiDoctorWriter;
 import net.thevpc.nuts.lib.md.docusaurus.DocusaurusMdParser;
@@ -31,7 +32,7 @@ public class TestDocusaurusParser {
                 "  nsh --help\n" +
                 "  ``` \n" +
                 "  you will get more details on nuts or on the tool (here nsh)\n";
-        MdParser parser = MdFactory.createParser(MdFactory.MIMETYPE_DOCUSAURUS, new StringReader(s));
+        MdParser parser = MdFactory.createParser(new StringReader(s));
         MdElement e = parser.parse();
         System.out.println(e);
     }
@@ -294,7 +295,7 @@ public class TestDocusaurusParser {
                 "/net/thevpc/nuts/nuts/$NVER/nuts-$NVER.jar && java -jar \\\n" +
                 "      nuts-$NVER.jar -Zy && . ~/.bashrc\n" +
                 "```\n";
-        MdParser parser = MdFactory.createParser(MdFactory.MIMETYPE_DOCUSAURUS, new StringReader(s));
+        MdParser parser = MdFactory.createParser(new StringReader(s));
         MdElement e = parser.parse();
         System.out.println(e);
     }
@@ -302,9 +303,11 @@ public class TestDocusaurusParser {
     @Test
     public void testRemoveMe() {
         try {
-            MdParser parser = MdFactory.createParser(null, new FileReader(
-                    "/home/vpc/xprojects/nuts-world/nuts/nuts/documentation/website/src/include/documentation/01-intro/.folder-info.md"
-            ));
+            Nuts.openWorkspace("--sandbox","-y").share();
+            MdParser parser = MdFactory.createParser(new FileReader(
+//                    "/home/vpc/xprojects/nuts-world/nuts/nuts/documentation/website/src/include/documentation/01-intro/.folder-info.md"
+                    "/home/vpc/xprojects/nuts-world/nuts/documentation/website/src/include/naf/06-dev/nuts-optional.md"
+            ), null);
             MdElement p = parser.parse();
             System.out.println(p);
         } catch (FileNotFoundException e) {

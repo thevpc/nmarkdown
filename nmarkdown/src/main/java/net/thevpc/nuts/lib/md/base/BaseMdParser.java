@@ -9,6 +9,7 @@ import net.thevpc.nuts.lib.md.util.MdElementAndChildrenList;
 import net.thevpc.nuts.lib.md.util.MdUtils;
 import net.thevpc.nuts.util.NBlankable;
 import net.thevpc.nuts.util.NStringBuilder;
+import net.thevpc.nuts.util.NStringUtils;
 
 import java.io.Reader;
 import java.io.StringReader;
@@ -39,6 +40,7 @@ public class BaseMdParser implements MdParser {
                             .setWasNewline(true)
                     , path);
             if (n != null) {
+//                System.out.println("READ : "+ NStringUtils.formatStringLiteral(n.toString()));
                 list.add(n);
             }
         }
