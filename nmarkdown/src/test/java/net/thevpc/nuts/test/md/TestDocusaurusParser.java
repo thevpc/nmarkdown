@@ -303,7 +303,7 @@ public class TestDocusaurusParser {
     @Test
     public void testRemoveMe() {
         try {
-            Nuts.openWorkspace("--sandbox","-y").share();
+            Nuts.require();
             MdParser parser = MdFactory.createParser(new FileReader(
 //                    "/home/vpc/xprojects/nuts-world/nuts/nuts/documentation/website/src/include/documentation/01-intro/.folder-info.md"
                     "/home/vpc/xprojects/nuts-world/nuts/documentation/website/src/include/naf/06-dev/nuts-optional.md"
