@@ -5,7 +5,7 @@
  */
 package net.thevpc.nuts.lib.md.convert;
 
-import net.thevpc.nuts.NSession;
+import net.thevpc.nuts.core.NSession;
 
 import java.util.function.Function;
 
