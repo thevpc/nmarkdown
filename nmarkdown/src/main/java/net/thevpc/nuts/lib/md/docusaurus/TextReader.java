@@ -544,7 +544,7 @@ public class TextReader {
             return readStringOrEmpty(new TextReader.Globber() {
                 @Override
                 public TextReader.GlobberRet accept(StringBuilder visited, char next) {
-                    boolean b = next > 0x32 && next != '=' && next != '>';
+                    boolean b = next > 0x20 && next != '=' && next != '>';
                     return b ? TextReader.GlobberRet.ACCEPT : TextReader.GlobberRet.REJECT_LAST;
                 }
             });
