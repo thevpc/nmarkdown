@@ -199,6 +199,12 @@ public class BaseMdParser implements MdParser {
             if (c == null || c.isEmpty()) {
                 c = n;
                 n = "";
+            }else if(c.startsWith(" ")|| c.startsWith("\t")|| c.startsWith("\n")){
+                //okkay!
+                c=NStringUtils.trimLeft(c);
+            }else{
+                c = n+c.trim();
+                n = "";
             }
             return MdFactory.codeBacktick3(n, c == null ? "" : c);
         }
