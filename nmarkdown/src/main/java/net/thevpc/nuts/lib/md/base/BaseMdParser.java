@@ -1,8 +1,7 @@
 package net.thevpc.nuts.lib.md.base;
 
 import net.thevpc.nuts.elem.NElement;
-import net.thevpc.nuts.elem.NElementParser;
-import net.thevpc.nuts.elem.NElements;
+import net.thevpc.nuts.elem.NElementReader;
 import net.thevpc.nuts.lib.md.*;
 import net.thevpc.nuts.lib.md.docusaurus.DocusaurusTextReader;
 import net.thevpc.nuts.lib.md.docusaurus.TextReader;
@@ -63,7 +62,7 @@ public class BaseMdParser implements MdParser {
                 }
             }
         }
-        return NElementParser.ofYaml().parse(frontMatter.toString());
+        return NElementReader.ofYaml().read(frontMatter.toString());
     }
 
     @Override
