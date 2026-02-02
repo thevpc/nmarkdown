@@ -39,7 +39,7 @@ public class MdUnNumberedList extends MdParent {
             for (int i = 1; i < content.length; i++) {
                 MdUnNumberedItem c = content[i];
                 String p2 = c.getPrefix();
-                NAssert.requireTrue(Objects.equals(p, p2), "equals " + p + " and " + p2);
+                NAssert.requireNamedTrue(Objects.equals(p, p2), "equals " + p + " and " + p2);
             }
             this.prefix = p;
         } else {
@@ -59,7 +59,7 @@ public class MdUnNumberedList extends MdParent {
                     boolean u = MdUtils.isUnnumberedPrefixChild(p2, p);
                     System.out.println("why");
                 }
-                NAssert.requireTrue(Objects.equals(p, p2), "expected '" + p + "' and got '" + p2+"'");
+                NAssert.requireNamedTrue(Objects.equals(p, p2), "expected '" + p + "' and got '" + p2+"'");
             }
         } else {
             this.prefix = "";
