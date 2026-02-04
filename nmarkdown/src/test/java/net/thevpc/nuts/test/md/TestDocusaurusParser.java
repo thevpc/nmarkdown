@@ -300,19 +300,4 @@ public class TestDocusaurusParser {
         System.out.println(e);
     }
 
-    @Test
-    public void testRemoveMe() {
-        try {
-            Nuts.require();
-            MdParser parser = MdFactory.createParser(new FileReader(
-//                    "/home/vpc/xprojects/nuts-world/nuts/nuts/documentation/website/src/include/documentation/01-intro/.folder-info.md"
-                    "/home/vpc/xprojects/nuts-world/nuts/documentation/website/src/include/naf/06-dev/nuts-optional.md"
-            ), null);
-            MdElement p = parser.parse();
-            System.out.println(p);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-
-    }
 }
