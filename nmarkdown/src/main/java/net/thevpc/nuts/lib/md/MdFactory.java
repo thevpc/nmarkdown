@@ -65,7 +65,7 @@ public class MdFactory {
     }
 
     public static MdParser createParser(NInputSource inputSource, String mimeType) {
-        return createParser(inputSource.getReader(), mimeType);
+        return createParser(inputSource.asReader(), mimeType);
     }
 
     public static MdParser createParser(Reader reader, String mimeType) {
@@ -95,7 +95,7 @@ public class MdFactory {
     }
 
     public static MdParser createParser(NInputSource inputSource) {
-        return createParser(inputSource.getReader());
+        return createParser(inputSource.asReader());
     }
 
     public static MdParser createParser(Reader reader) {
