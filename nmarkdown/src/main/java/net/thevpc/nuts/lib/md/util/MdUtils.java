@@ -26,7 +26,7 @@ public class MdUtils {
         if (e instanceof MdText) {
             MdText u = (MdText) e;
             String s = u.getText();
-            s = (left && right) ? NStringUtils.trim(s) : left ? NStringUtils.trimLeft(s) : NStringUtils.trimRight(s);
+            s = (left && right) ? NStringUtils.strip(s) : left ? NStringUtils.stripLeft(s) : NStringUtils.stripRight(s);
             MdText p = new MdText(s, u.isInline());
             p.setPreambleHeader(e.getPreambleHeader());
             return p;

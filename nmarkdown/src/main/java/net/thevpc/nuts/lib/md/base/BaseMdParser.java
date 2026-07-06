@@ -200,7 +200,7 @@ public class BaseMdParser implements MdParser {
                 n = "";
             }else if(c.startsWith(" ")|| c.startsWith("\t")|| c.startsWith("\n")){
                 //okkay!
-                c=NStringUtils.trimLeft(c);
+                c=NStringUtils.stripLeft(c);
             }else{
                 c = n+c.trim();
                 n = "";

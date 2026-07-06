@@ -47,7 +47,7 @@ public class MdUnNumberedItem extends MdAbstractElement {
         if(!value.isInline()){
             throw new IllegalArgumentException("unexpected newline element in un-numbered item: "+value.type());
         }
-        this.prefix = NStringUtils.trimRight(prefix);
+        this.prefix = NStringUtils.stripRight(prefix);
         this.children = children==null?new MdElement[0] :children ;
         id=new MdElementType(MdElementTypeGroup.UNNUMBERED_ITEM,depth);
     }
