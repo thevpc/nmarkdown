@@ -159,8 +159,9 @@ public class BaseMdParser implements MdParser {
     }
 
     public MdElement readBacktics() {
-        String s = reader.readChars('`', 3, 3);
-        if (s.length() == 3) {
+        String s = reader.readChars('`', 3, Integer.MAX_VALUE);
+        int backtickCount=s.length();
+        if (backtickCount >= 3) {
             String n = reader.readTagName();
             String c = reader.readStringOrEmpty(new TextReader.Globber() {
                 int backtics = 0;
@@ -168,7 +169,7 @@ public class BaseMdParser implements MdParser {
 
                 @Override
                 public TextReader.GlobberRet accept(StringBuilder curr, char next) {
-                    if (backtics >= 3) {
+                    if (backtics >= backtickCount) {
                         return TextReader.GlobberRet.REJECT_LAST;
                     }
                     if (next == '\\') {
@@ -176,7 +177,7 @@ public class BaseMdParser implements MdParser {
                         return TextReader.GlobberRet.WAIT_FOR_MORE;
                     } else if (next == '`') {
                         backtics++;
-                        if (backtics == 3) {
+                        if (backtics == backtickCount) {
                             if (ignoreNext) {
                                 backtics = 0;
                                 ignoreNext = false;
@@ -192,8 +193,8 @@ public class BaseMdParser implements MdParser {
                     }
                 }
             });
-            if (c != null && c.endsWith("```")) {
-                c = c.substring(0, c.length() - 3);
+            if (c != null && c.endsWith(s)) {
+                c = c.substring(0, c.length() - s.length());
             }
             if (c == null || c.isEmpty()) {
                 c = n;
