@@ -48,7 +48,7 @@ public class BaseMdParser implements MdParser {
     }
 
     protected NElement parseHeader(SectionPathHolder path) {
-        NStringBuilder frontMatter = new NStringBuilder();
+        NStringBuilder frontMatter = NStringBuilder.of();
         reader.readSpacesOrNewline();
         if (reader.hasMore()) {
             String line = reader.readSingleLineRegexp("---.*");

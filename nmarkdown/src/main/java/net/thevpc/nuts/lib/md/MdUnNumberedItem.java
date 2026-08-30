@@ -80,7 +80,7 @@ public class MdUnNumberedItem extends MdAbstractElement {
 
     @Override
     public String toString() {
-        NStringBuilder sb=new NStringBuilder();
+        NStringBuilder sb=NStringBuilder.of();
         char cc='-';
         if(type!=null && !type.trim().isEmpty()){
             cc=type.trim().charAt(0);
@@ -93,7 +93,7 @@ public class MdUnNumberedItem extends MdAbstractElement {
                     sb.append("\n");
                 }
                 String ss = child.toString();
-                sb.append(new NStringBuilder(ss).indent("  "));
+                sb.append(NStringBuilder.of(ss).indent("  "));
             }
         }
         return sb.toString();
