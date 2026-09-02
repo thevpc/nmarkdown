@@ -509,9 +509,9 @@ public class BaseMdParser implements MdParser {
 
     private MdElement splitText(String text1, boolean inline) {
         List<MdElement> textOrUrls = new ArrayList<>();
-        Pattern photoPattern = Pattern.compile("[!]\\[(?<name>[^\\[\\]]*)\\]\\(\\s*(?<url>[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|])\\s*\\)");
-        Pattern urlPatternFull = Pattern.compile("\\[(?<name>[^\\[\\]]*)\\]\\(\\s*(?<url>(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|])\\s*\\)");
-        Pattern anchorPattern = Pattern.compile("\\[(?<name>[^\\[\\]]*)\\]\\(\\s*(?<url>[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|])\\s*\\)");
+        Pattern photoPattern = Pattern.compile("[!]\\[(?<name>(?:\\\\.|\\[[^\\[\\]]*\\]|[^\\[\\]])*)\\]\\(\\s*(?<url>[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|])\\s*\\)");
+        Pattern urlPatternFull = Pattern.compile("\\[(?<name>(?:\\\\.|\\[[^\\[\\]]*\\]|[^\\[\\]])*)\\]\\(\\s*(?<url>(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|])\\s*\\)");
+        Pattern anchorPattern = Pattern.compile("\\[(?<name>(?:\\\\.|\\[[^\\[\\]]*\\]|[^\\[\\]])*)\\]\\(\\s*(?<url>[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|])\\s*\\)");
         Pattern urlPattern = Pattern.compile("(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]");
         String text1Remainings = text1;
         while (!text1Remainings.isEmpty()) {
